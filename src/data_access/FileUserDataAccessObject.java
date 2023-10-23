@@ -59,6 +59,19 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         this.save();
     }
 
+    public void clear(){
+        try{
+            new FileOutputStream(csvFile).close();
+        } catch(IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isEmpty(){
+        return (csvFile.length() == 0);
+    }
+
+
     @Override
     public User get(String username) {
         return accounts.get(username);
